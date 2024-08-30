@@ -2,12 +2,25 @@ import React, { Component } from "react";
 
 export class NewsItem extends Component {
   render() {
-    let { imageUrl, title, description, newsUrl, author, date, source } =
-      this.props;
+    let { imageUrl, title, description, newsUrl, author, date } = this.props;
 
     return (
       <div>
         <div className="card m-4">
+          <div>
+            <span
+              className="badge bg-danger text-bg-danger"
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                position: "absolute",
+                left: -2,
+                top: -8,
+              }}
+            >
+              {author}
+            </span>
+          </div>
           <img
             src={
               !imageUrl
@@ -18,13 +31,11 @@ export class NewsItem extends Component {
             alt="..."
           />
           <div className="card-body">
-            <h5 className="card-title">
-              {title}
-              <span className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-info rounded-pill text-bg-info">
-                {source}
-              </span>
-            </h5>
+            <h5 className="card-title">{title}</h5>
             <p className="card-text">{description}</p>
+            <div className="text-start mb-2">
+              <small className="text-muted ">{date}</small>
+            </div>
             <a
               href={newsUrl}
               target="_blank"
@@ -33,11 +44,6 @@ export class NewsItem extends Component {
             >
               Read More
             </a>
-          </div>
-          <div className="card-footer">
-            <small className="text-muted">
-              By {author} on {date}
-            </small>
           </div>
         </div>
       </div>
